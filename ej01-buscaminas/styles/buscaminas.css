@@ -37,11 +37,11 @@
     background-image: url("../images/bandera.png");
     background-size: contain;
 }
-
+/*
 .celda[data-mina="true"] {
     background-image: url("../images/mina_explotada.png");
 }
-
+*/
 .mina {
     background-image: url("../images/mina.png");
     background-size: contain;
