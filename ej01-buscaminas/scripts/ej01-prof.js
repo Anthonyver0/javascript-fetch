@@ -30,6 +30,7 @@
             //partida en marcha: analizar todos los posibles casos
             if (ev.button == 0) {
                 //se ha pulsado el botón izquierdo
+                ev.target.dataset.clicada = true
                 if (ev.target.dataset.mina == "true") {
                     //has clicado mina -> pierdes
                     partidaEnJuego = false
@@ -38,8 +39,11 @@
                 } else {
                     //no has clicado mina
                     //calcular número minas alrededor
-                    let minesAround = calculateMinesAround(ev.target.dataset.fila,ev.target.dataset.columna)
+                    let minesAround = calculateMinesAround(parseInt(ev.target.dataset.fila),
+                                                           parseInt(ev.target.dataset.columna))
+                    ev.target.classList.add("celda_clicada"+minesAround)
                     //comprobar si con este último clic has ganado
+
                 }
             } else if (ev.button == 2) {
                 //se ha pulsado el botón derecho
@@ -60,6 +64,7 @@
             newCell.dataset.fila = Math.floor(i / WIDTH)
             newCell.dataset.columna = i % WIDTH
             newCell.dataset.mina = false
+            newCell.dataset.clicada = false
             board.append(newCell)
         }
     } // FIN DE GENERATEBOARD
@@ -73,6 +78,7 @@
             //colocar mina si no hay mina previamente en esa casilla
             if (allCells[randNum].dataset.mina == "false") {
                 allCells[randNum].dataset.mina = true
+                allCells[randNum].classList.add("mina")
                 //incrementar contador de minas ya colocadas
                 assignedMines++
             }
@@ -83,5 +89,17 @@
         const allCellsWithMine = document.querySelectorAll(".celda[data-mina=true]")
         allCellsWithMine.forEach(celda => celda.classList.add("mina"))
     }
+
+    function calculateMinesAround(fila,col) {
+        let celda
+        let around = 0
+        for (let i=fila-1; i<=fila+1; i++) {
+            for (let j=col-1; j<=col+1; j++) {
+                celda = document.querySelector(`.celda[data-fila='${i}'][data-columna='${j}']`)
+                if (celda && celda.dataset.mina == 'true') around++
+            }
+        }
+        return around
+    } // fin de la función "calculateMinesAround"
 
 })() // fin de nuestro código encapsulado
