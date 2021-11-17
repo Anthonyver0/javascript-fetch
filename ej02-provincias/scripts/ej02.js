@@ -1,3 +1,21 @@
+(function(){
+    console.log("empieza ejecución del ej02")
+    fetch("server/cargaProvinciasXML.php").then(
+        function(response){
+            console.table(response)
+        }
+    )
+    console.log("hola")
+})()
+
+
+
+
+
+
+
+
+/*
 const selectProvincias = document.querySelector("#provincias")
 const selectMunicipios = document.querySelector("#municipios")
 
@@ -24,7 +42,7 @@ selectProvincias.addEventListener(
         }
     }
 )
-
+*/
 
 
 /*
