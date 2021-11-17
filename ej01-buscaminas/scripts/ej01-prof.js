@@ -91,7 +91,7 @@
             //colocar mina si no hay mina previamente en esa casilla
             if (allCells[randNum].dataset.mina == "false") {
                 allCells[randNum].dataset.mina = true
-                allCells[randNum].classList.add("mina")
+                //allCells[randNum].classList.add("mina")
                 //incrementar contador de minas ya colocadas
                 assignedMines++
             }
