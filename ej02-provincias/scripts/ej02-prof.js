@@ -5,6 +5,85 @@
     poblarProvincias()
     escucharCambioProvincia()
 
+
+    function poblarProvincias() {
+        fetch('server/cargaProvinciasXML.php') //solicitar un recurso de la red
+        .then(
+            //código que se va a ejecutar cuando llegue la respuesta de mi solicitud
+            respuesta=>{
+                return respuesta.text() //solicitar la extracción del texto de la información útil
+            }
+        ).then(
+            //código que se va a ejecutar cuando se complete la extracción del texto de la información
+            xmlText=>{
+                //console.log(xmlText)
+                let parser = new DOMParser();
+                let xmlDoc = parser.parseFromString(xmlText,"text/xml")
+                let provincias = xmlDoc.querySelectorAll("provincia")
+                /* provincia
+                    +---codigo
+                    +---nombre
+                */
+               provincias.forEach(prov=>{
+                   //extraer de "prov" el código y el nombre de la provincia
+                   let codProv = prov.querySelector("codigo").textContent
+                        //let codProv = prov.children[0].textContent
+                   let nomProv = prov.querySelector("nombre").textContent
+                        //let nomProv = prov.children[1].textContent
+
+                   let newOption = document.createElement("option")
+                   newOption.textContent = nomProv
+                   newOption.value = codProv
+                   selectProvincias.append(newOption)
+               })
+
+            }
+        ).catch(
+            error=>{
+                console.error("todo fatal: " + error)
+            }
+        )
+    }
+
+    function escucharCambioProvincia() {
+        selectProvincias.addEventListener("change",function(){
+            //se inicia una 2ª solicitud HTTP al servidor
+            //para obtener la lista de municipios de la provincia elegida
+            let codProvElegida = this.value
+            //console.log(this.value)
+            const params = new URLSearchParams("provincia="+codProvElegida) //provincia=04
+            const options = {
+                method: 'POST', // *GET, POST, PUT, DELETE, etc.
+                body: params // body data type must match "Content-Type" header
+            }
+            fetch('server/cargaMunicipiosXML.php',options)
+        })
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+    poblarProvincias()
+    escucharCambioProvincia()
+
     function poblarProvincias() {
         fetch("server/cargaProvinciasXML.php")
         .then(
@@ -39,7 +118,7 @@
             console.log("Has elegido la provincia con código " + codProvElegida)
         })
     }
-
+*/
 })()
 
 
