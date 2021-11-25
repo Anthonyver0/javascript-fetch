@@ -57,6 +57,31 @@
                 body: params // body data type must match "Content-Type" header
             }
             fetch('server/cargaMunicipiosXML.php',options)
+            .then(
+                respuesta=>{
+                    return respuesta.text()
+                }
+            ).then(
+                datosCrudos=>{
+                    console.log(datosCrudos)
+                    let parser = new DOMParser();
+                    let xmlDoc = parser.parseFromString(datosCrudos,"text/xml")
+                    let municipios = xmlDoc.querySelectorAll("municipio")
+                    //vaciar primero la lista de municipios
+                    selectMunicipios.innerHTML = '<option value="0">(Elige municipio)</option>'
+                    //rellenar el SELECT de municipios
+                    municipios.forEach(muni=>{
+                        //extraer de "muni" el código y el nombre de la provincia
+                        let codMuni = muni.querySelector("codigo").textContent
+                        let nomMuni = muni.querySelector("nombre").textContent
+     
+                        let newOption = document.createElement("option")
+                        newOption.textContent = nomMuni
+                        newOption.value = codMuni
+                        selectMunicipios.append(newOption)
+                    })
+                }
+            )
         })
     }
 

@@ -11,6 +11,27 @@
     let partidaEnJuego = false
     let timer
 
+    cargarRecords(1,5)
+    function cargarRecords(modo,numero){
+        const recordsDiv = document.querySelector("#records")
+        const params = new URLSearchParams("modo=1&length=5")
+        const options = {
+            method: 'POST', // *GET, POST, PUT, DELETE, etc.
+            body: params // body data type must match "Content-Type" header
+        }
+        fetch('server/loadRecords.php',options)
+        .then(respuesta=>respuesta.json())
+        .then(json=>{
+            //recorrer el array del JSON
+            recordsDiv.innerHTML = ""
+            json.forEach(elem=>{
+                let newRecord = document.createElement("P")
+                newRecord.textContent = elem.nick + ", " + elem.tiempo
+                recordsDiv.append(newRecord)
+            })
+        })
+    }
+
     setupMouse()
     empezar.addEventListener("click",function(){
         generateBoard()
@@ -28,7 +49,7 @@
             if (ev.target.classList.contains("celda")) {
                 fila.textContent = ev.target.dataset.fila
                 columna.textContent = ev.target.dataset.columna
-                mina.textContent = ev.target.dataset.mina
+                //mina.textContent = ev.target.dataset.mina
             }
         })
         board.addEventListener("mouseup",(ev)=>{
