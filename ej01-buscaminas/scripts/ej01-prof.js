@@ -179,7 +179,13 @@
         descubrirMinas()
         //mostrar tabla de mejores puntuaciones
         //comprobar si la nueva puntuación merece entrar
-        alert("asd")
+        let params = new URLSearchParams("modo=1&tiempo=" + reloj.textContent + "&nick=player1")
+        let options = {
+            method: 'POST',
+            body: params
+        }
+        fetch('server/saveRecord.php',options)
+        .then(cargarRecords(1,5))
     }
 
 })() // fin de nuestro código encapsulado
