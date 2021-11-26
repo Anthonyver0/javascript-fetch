@@ -12,7 +12,7 @@ if(isset($_GET['ultimo'])) {
 		$root = $xml->appendChild($xml->createElement("listado"));
 		if (!$DEPURACION) header('Content-type: text/xml');
 
-		$consulta = "SELECT * FROM chat WHERE id_mensa > ".$_GET['ultimo'];
+		$consulta = "SELECT * FROM mensajes WHERE id > ".$_GET['ultimo'];
 		$sen = $con->prepare($consulta);
 		$sen->execute();
 		

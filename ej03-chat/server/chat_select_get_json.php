@@ -8,16 +8,16 @@ if(isset($_GET['ultimo'])) {
         var $fechas;
     }
     function queryIDs($pattern,$conexion) {
-        $sentencia = "SELECT id_mensa FROM chat WHERE id_mensa > ".$_GET['ultimo'];
+        $sentencia = "SELECT id FROM mensajes WHERE id > ".$_GET['ultimo'];
         $resultados = mysql_query($sentencia, $conexion) or die("Error en query: ".mysql_error());
         $salida = array();
         while ($fila = mysql_fetch_array($resultados)) {
-           $salida[] = $fila['id_mensa'];
+           $salida[] = $fila['id'];
         }
         return $salida;
     }
     function queryNicks($pattern,$conexion) {
-        $sentencia = "SELECT nick FROM chat WHERE id_mensa > ".$_GET['ultimo'];
+        $sentencia = "SELECT nick FROM mensajes WHERE id > ".$_GET['ultimo'];
         $resultados = mysql_query($sentencia, $conexion) or die("Error en query: ".mysql_error());
         $salida = array();
         while ($fila = mysql_fetch_array($resultados)) {
@@ -26,7 +26,7 @@ if(isset($_GET['ultimo'])) {
         return $salida;
     }
     function queryTextos($pattern,$conexion) {
-        $sentencia = "SELECT texto FROM chat WHERE id_mensa > ".$_GET['ultimo'];
+        $sentencia = "SELECT texto FROM mensajes WHERE id > ".$_GET['ultimo'];
         $resultados = mysql_query($sentencia, $conexion) or die("Error en query: ".mysql_error());
         $salida = array();
         while ($fila = mysql_fetch_array($resultados)) {
@@ -35,11 +35,11 @@ if(isset($_GET['ultimo'])) {
         return $salida;
     }
     function queryFechas($pattern,$conexion) {
-        $sentencia = "SELECT fechahora FROM chat WHERE id_mensa > ".$_GET['ultimo'];
+        $sentencia = "SELECT instante FROM mensajes WHERE id > ".$_GET['ultimo'];
         $resultados = mysql_query($sentencia, $conexion) or die("Error en query: ".mysql_error());
         $salida = array();
         while ($fila = mysql_fetch_array($resultados)) {
-           $salida[] = $fila['fechahora'];
+           $salida[] = $fila['instante'];
         }
         return $salida;
     }
