@@ -1,0 +1,59 @@
+body {
+    background-color: grey;
+    font-family: "Fjalla One", sans-serif;
+}
+
+ul {
+    list-style: none;
+    padding-left: 0px;
+}
+
+#divBuscador h1 {
+    color: lightblue;
+}
+
+#divBuscador {
+    width: 450px;
+    margin: auto;
+    margin-top: 5%;
+}
+
+#buscador {
+    background-color: darkseagreen;
+    width: 350px;
+    font-size: 18px;
+}
+
+#divSugerencias {
+    display: none;
+    width: 95%;
+    border: thin solid black;
+    margin: auto;
+    background-color: white;
+}
+
+#divSugerencias>p {
+    margin: 0px;
+}
+
+#divResultados {
+    width: 750px;
+    margin: auto;
+    margin-top: 100px;
+}
+
+.menu {
+    border: thin dotted black;
+    background-color: lightblue;
+}
+
+.listaResultados {
+    border: thin dotted black;
+    margin-left: 30px;
+    padding-left: 10px;
+    background-color: darkseagreen;
+}
+
+.selected {
+    background-color: lightblue;
+}
