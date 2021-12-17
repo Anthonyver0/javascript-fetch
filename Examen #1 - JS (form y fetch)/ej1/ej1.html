@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8">
+		<title>GESTIÓN DE ENVÍO DE PEDIDOS</title>
+		<link rel="stylesheet" type="text/css" href="ej1.css">
+		<script defer type="text/javascript" src="ej1.js"></script>
+	</head>
+	<body>
+		<div id="for">
+		<h1>Gestión de envío de pedidos</h1>
+		<form id="formEnvios" action="" method="POST">
+			<fieldset>
+			<legend><b>Datos del envío</b></legend>
+			<table>
+				<tr>
+					<td>Número de referencia del pedido</td>
+					<td><input id="refPedido" class="campoCorrecto" type="text" placeholder="Número de referencia del pedido *" size="40"></td>
+					<td><label id="refPedidoError"></label></td>
+				</tr>
+				<tr>
+					<td>Peso en kilogramos</td>
+					<td><input id="peso" class="campoCorrecto" type="text" placeholder="Peso en KG *" size="20"></td>
+					<td><label id="pesoError"></label></td>
+				</tr>
+			</table>
+			</fieldset>
+			<br>
+
+			<fieldset>
+			<legend><b>Acciones</b></legend>
+			<input type="submit" id="enviar" value="Enviar">
+			</fieldset>
+		</form>
+		</div>
+	</body>
+</html>

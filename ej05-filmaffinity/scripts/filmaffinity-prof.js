@@ -32,6 +32,7 @@
                newLI.textContent = elem.texto
                newLI.dataset.id = elem.id
                newLI.dataset.tipo = elem.tipo
+
                if (elem.tipo == 'tit') resultados[0].append(newLI)
                else if (elem.tipo == 'dir') resultados[1].append(newLI)
                else if (elem.tipo == 'act') resultados[2].append(newLI)

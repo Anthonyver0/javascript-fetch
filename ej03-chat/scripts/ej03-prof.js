@@ -40,7 +40,10 @@
             let xml = parser.parseFromString(xmlCrudo,'text/xml')
             let mensajes = xml.querySelectorAll("mensaje")
             mensajes.forEach(msj=>{
+                
                 let id = msj.querySelector("id").textContent
+                let id = msj.children[0].textContent
+
                 let nick = msj.querySelector("nick").textContent
                 let texto = msj.querySelector("texto").textContent
                 let instante = msj.querySelector("instante").textContent

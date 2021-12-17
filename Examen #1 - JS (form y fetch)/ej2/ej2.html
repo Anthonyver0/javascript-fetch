@@ -1,0 +1,78 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+	<link href="https://fonts.googleapis.com/css?family=Kanit&display=swap" rel="stylesheet">
+	<style type="text/css">
+		body {
+			font-family: 'Kanit', sans-serif;
+		}
+		.entrada {
+			background-color: lightgreen;
+		}
+		.salida {
+			background-color: lightblue;
+		}
+		.seleccionado {
+			background-color: lightyellow;
+		}
+		ul {
+			text-align: left;
+		}
+	</style>
+	<script defer type="text/javascript" src="ej2.js"></script>
+</head>
+
+<body>
+	<table id="tablaEntrada" border='2' align='center' style="background-color:lightgrey;width:800px;padding:10px">
+		<tr align="center" style="padding:10px">
+			<td class="entrada"><h3>CATEGORÍA</h3></td>
+			<td class="entrada"><h3>RIVAL #1</h3></td>
+			<td class="entrada"><h3>RIVAL #2</h3></td>
+			<td class="entrada"><h3>ACCIONES</h3></td>
+		</tr>
+		<tr align="center">
+			<td class="entrada">
+				<select id="criterio">
+					<option value="nada">(Elige categoría)</option>
+					<option value="eq">Equipos</option>
+					<option value="indiv">Jugadores</option>
+				</select>
+			</td>
+			<td class="entrada">
+				<ul id="rival1">
+				</ul>
+			</td>
+			<td class="entrada">
+				<ul id="rival2">
+				</ul>
+			</td>
+			<td class="entrada">
+				<input disabled type="button" id="enviar" value="Enviar"></input>
+				<input type="button" id="consultar" value="Consultar"></input>
+			</td>
+		</tr>
+	</table>
+	<br>
+	<table id="tablaSalida" border='2' align='center' style="background-color:lightgrey;width:600px;padding:10px">
+		<thead>
+			<tr align="center" style="padding:10px">
+				<td class="salida"><h3>CATEGORÍA</h3></td>
+				<td class="salida"><h3>RIVAL #1</h3></td>
+				<td class="salida"><h3>RIVAL #2</h3></td>
+			</tr>
+		</thead>
+		<tbody>
+		</tbody>
+		<tfoot>
+			<tr align="center">
+				<td colspan="3">
+					<input type="checkbox" id="verEquip" checked="checked"><label>Mostrar equipos</label>
+					<input type="checkbox" id="verJugad" checked="checked"><label>Mostrar jugadores</label>
+				</td>
+			</tr>
+		</tfoot>
+	</table>
+	
+</body>
+</html>
