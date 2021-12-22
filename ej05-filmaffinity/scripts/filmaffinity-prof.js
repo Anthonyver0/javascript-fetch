@@ -4,6 +4,9 @@
     const divSugerencias = document.querySelector('#divSugerencias')
     const divResultados = document.querySelector('#divResultados')
     const resultados = document.querySelectorAll('ul.listaResultados')
+    let retardo
+    const MS_RETARDO = 500
+    let cache = []
 
     function mostrarSugerenciasPorPatron(patron) {
         //1º vaciamos el DIV de sugerencias, esto se podría hacer fuera de la función antes de llamarla
@@ -12,11 +15,19 @@
         fetch('server/search.php?p=' + patron)
         .then(resp=>resp.json())
         .then(json=>{
-            json.forEach(elem=>{
-                let newP = document.createElement('P')
-                newP.textContent = elem.texto
-                divSugerencias.append(newP)
-            })
+            //guardar el json recibido en nuestra caché asociativa
+            cache[patron] = json
+            console.log(cache)
+            //procesarlo para mostrarlo en pantalla
+            procesarJSONdesdeCache(json)
+        })
+    }
+
+    function procesarJSONdesdeCache(json) {
+        json.forEach(elem=>{
+            let newP = document.createElement('P')
+            newP.textContent = elem.texto
+            divSugerencias.append(newP)
         })
     }
 
@@ -93,9 +104,16 @@
                 divSugerencias.style.display = 'none'
                 mostrarResultadosPorPatron(patron)
             } else {
-                //mostramos sugerencias en el div del buscador
-                divSugerencias.style.display = 'block'
-                mostrarSugerenciasPorPatron(patron)
+                if (cache[patron])
+                    procesarJSONdesdeCache(cache[patron])
+                else {
+                    //mostramos sugerencias en el div del buscador
+                    clearTimeout(retardo)
+                    retardo = setTimeout(function(){
+                        divSugerencias.style.display = 'block'
+                        mostrarSugerenciasPorPatron(patron)
+                    },MS_RETARDO)
+                }
             }    
 
         } else {
